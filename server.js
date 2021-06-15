@@ -18,7 +18,10 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useFindAndModify: false
-});
+})
+
+// Sets up the routes folder to serve as the intermediary for requests made by the front end to the backend
+app.use(require("./routes"));
 
 // The app listens for the port to be utilized and then console logs the used port 
 app.listen(PORT, () => {
