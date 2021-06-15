@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+
 // Specifies the port used by the app to be a dynamic Heroku port or the locally hosted 300 port 
 const PORT = process.env.PORT || 3000;
 
@@ -17,11 +18,11 @@ app.use(express.static("public"));
 // Sets up the connection to the MongooseDB whether it is locally hosted or hosted through Heroku 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
-    useFindAndModify: false
-})
+    useFindAndModify: false,
+});
 
 // Sets up the routes folder to serve as the intermediary for requests made by the front end to the backend
-app.use(require("./routes"));
+app.use(require('./routes/'));
 
 // The app listens for the port to be utilized and then console logs the used port 
 app.listen(PORT, () => {
