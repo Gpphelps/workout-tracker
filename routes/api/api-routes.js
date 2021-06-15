@@ -16,6 +16,7 @@ router.post("/workouts", (req, res) => {
     });
 });
 
+// Adds a new workout to the database 
 router.put("/workouts/:id", async (req, res) => {
     let currentWorkout = await Workout.findOne({ _id: req.params.id });
 
@@ -37,6 +38,7 @@ router.put("/workouts/:id", async (req, res) => {
     }
 });
 
+// Gets all of the workouts that have been completed and complies there duration
 router.get("/workouts", async (req, res) => {
     let getDuration = await Workout.aggregate([
         {
@@ -50,6 +52,7 @@ router.get("/workouts", async (req, res) => {
     res.json(getDuration);
 });
 
+// Gets all of the workouts from the last 7 days and complies their duration
 router.get("/workouts/range", async (req, res) => {
     let getDuration = await Workout.aggregate([
         {
