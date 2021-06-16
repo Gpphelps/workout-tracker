@@ -1,7 +1,7 @@
 // Defines the api routes
 const router = require("express").Router();
 const Workout = require("../../models/workout");
-// const path = require("path");
+
 
 // Creates a new workout
 router.post("/workouts", (req, res) => {
