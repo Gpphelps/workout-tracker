@@ -4,7 +4,7 @@ const router = require("express").Router();
 const frontEnd = require("./front-end.js");
 const apiRoutes = require("./api/api-routes.js");
 
-// Defines the routes that are used by teh router
+// Defines the routes that are used by the router
 router.use("/", frontEnd);
 router.use("/api/", apiRoutes);
 
