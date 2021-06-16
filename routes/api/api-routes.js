@@ -1,6 +1,7 @@
 // Defines the api routes
 const router = require("express").Router();
 const Workout = require("../../models/workout");
+// const path = require("path");
 
 // Creates a new workout
 router.post("/workouts", (req, res) => {
@@ -23,7 +24,8 @@ router.put("/workouts/:id", async (req, res) => {
         return res.json({message: "Workout not found"});
     }
 
-    const { exercises } = currentWorkout.push(req.body);
+    const { exercises } = currentWorkout;
+    exercises.push(req.body);
 
     const updatedWorkout = await currentWorkout.save(
         { exercises: exercises}
