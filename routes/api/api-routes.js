@@ -42,7 +42,7 @@ router.put("/workouts/:id", async (req, res) => {
 router.get("/workouts", async (req, res) => {
     let getDuration = await Workout.aggregate([
         {
-            $fields: {
+            $project: {
                 day: 1,
                 exercises: 1,
                 totalDuration: { $sum: "$exercises.duration" }
@@ -56,7 +56,7 @@ router.get("/workouts", async (req, res) => {
 router.get("/workouts/range", async (req, res) => {
     let getDuration = await Workout.aggregate([
         {
-            $fields: {
+            $project: {
                 day: 1,
                 exercises: 1,
                 totalDuration: { $sum: "$exercises.duration" }
