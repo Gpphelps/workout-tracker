@@ -24,11 +24,10 @@ router.put("/workouts/:id", async (req, res) => {
         return res.json({message: "Workout not found"});
     }
 
-    const { exercises } = currentWorkout;
-    exercises.push(req.body);
+    currentWorkout.push(req.body);
 
     const updatedWorkout = await currentWorkout.save(
-        { exercises: exercises}
+        { currentWorkout: exercises}
     );
 
     if (!updatedWorkout) {
