@@ -24,11 +24,10 @@ router.put("/workouts/:id", async (req, res) => {
         return res.json({message: "Workout not found"});
     }
 
-    const { exercises } = currentWorkout;
-    exercises.push(req.body);
+    currentWorkout.push(req.body);
 
     const updatedWorkout = await currentWorkout.save(
-        { exercises: exercises}
+        { currentWorkout: exercises}
     );
 
     if (!updatedWorkout) {
@@ -42,7 +41,7 @@ router.put("/workouts/:id", async (req, res) => {
 router.get("/workouts", async (req, res) => {
     let getDuration = await Workout.aggregate([
         {
-            $project: {
+            $fields: {
                 day: 1,
                 exercises: 1,
                 totalDuration: { $sum: "$exercises.duration" }
@@ -56,7 +55,7 @@ router.get("/workouts", async (req, res) => {
 router.get("/workouts/range", async (req, res) => {
     let getDuration = await Workout.aggregate([
         {
-            $project: {
+            $fields: {
                 day: 1,
                 exercises: 1,
                 totalDuration: { $sum: "$exercises.duration" }
