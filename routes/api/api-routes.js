@@ -27,7 +27,7 @@ router.put("/workouts/:id", async (req, res) => {
     currentWorkout.push(req.body);
 
     const updatedWorkout = await currentWorkout.save(
-        { exercise: currentWorkout}
+        { currentWorkout: exercises}
     );
 
     if (!updatedWorkout) {
